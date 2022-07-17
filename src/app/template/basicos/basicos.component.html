@@ -1,0 +1,73 @@
+<h2>Template Forms</h2>
+<hr>
+<form (ngSubmit)="submit()" #datosForm="ngForm" autocomplete="off">
+    <!-- Input producto -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Producto</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" ngModel 
+            name="producto" required
+            placeholder="Nombre del producto" minlength="3">
+            
+            <span class="form-text text-danger"
+            *ngIf='nombreValido()'>
+            Debe ser minimo de 3 letras
+            </span>
+        </div>
+    </div>
+
+    <!-- Input Precio -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-sm-9">
+            <input type="number" class="form-control" ngModel name="precio"
+             placeholder="precio" min="0">
+             
+             <span class="form-text text-danger"
+                    *ngIf='precioValido()'>
+             La cifra debe ser superior a 0
+             </span>
+        </div>
+    </div>
+
+    <!-- Input Existencias -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Existencias</label>
+        <div class="col-sm-9">
+            <input type="number" class="form-control" ngModel
+            customMin
+            [minimo] = "0"
+            required
+            name="existencia"
+            placeholder="Existencias del producto">
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col">
+            <button type="submit"
+                    [disabled]="datosForm.invalid"
+                    class="btn btn-primary float-end">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+</form>
+
+<div class="row">
+    <div class="col">
+        <span>Valid</span>
+        <pre> {{ datosForm.valid }} </pre>
+        <pre>
+            {{ datosForm.value | json }}
+        </pre>
+
+        <span>Pristine</span>
+        <pre> {{ datosForm.pristine}} </pre>
+        
+        <span>Touched</span>
+        <pre> {{ datosForm.touched }} </pre>
+        
+    </div>
+</div>

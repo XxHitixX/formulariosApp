@@ -1,0 +1,64 @@
+<h2>Dinamicos Formularios <small>Template</small> </h2>
+<hr>
+<form (ngSubmit)="guardar()" #miFormulario="ngForm">
+
+    <!-- Nombre -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" required
+                    placeholder="Nombre de la persona" name="nombre"
+                    [ngModel]="persona.nombre"> 
+            
+            <span class="form-text text-danger"
+                    *ngIf="miFormulario.controls['nombre']?.invalid && 
+                        miFormulario.controls['nombre']?.touched">
+                No puedes tener un campo vacio
+            </span>
+
+        </div>
+    </div>
+
+
+<!-- Agregar-->
+        <div class="row mb-3">
+            <label class="col-sm-3">Favorito</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                            placeholder="Agregar juego favorito">
+                    <button class="btn btn-outline-primary" type="button">Agregar</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Lista-->
+        <div class="mb-3 row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+                <input  type="text" *ngFor="let anime of persona.favorito; let i = index"
+                        [(ngModel)]="anime.nombre"
+                        name='anime_{{ i }}'
+                        class="form-control mb-1">
+    
+            </div>
+        </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button (click)="guardar()" 
+            [disabled]="miFormulario.invalid"
+                    class="btn btn-primary float-end">
+                Enviar
+            </button>
+        </div>
+    </div>
+</form>
+
+
+<h2>Persona</h2>
+<pre>{{ persona | json }}</pre>
