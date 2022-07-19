@@ -8,7 +8,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
-  styles: [
+  styles: [`
+  li{
+   cursor: pointer;
+  }
+  `
   ]
 })
 export class SideNavComponent{

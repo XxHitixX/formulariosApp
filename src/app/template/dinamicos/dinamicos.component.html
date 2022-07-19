@@ -6,6 +6,7 @@
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Nombre</label>
         <div class="col-sm-9">
+
             <input type="text" class="form-control" required
                     placeholder="Nombre de la persona" name="nombre"
                     [ngModel]="persona.nombre"> 
@@ -22,27 +23,36 @@
 
 <!-- Agregar-->
         <div class="row mb-3">
-            <label class="col-sm-3">Favorito</label>
+            <label class="col-sm-3">Agregar</label>
             <div class="col-sm-9">
                 <div class="input-group">
                     <input type="text" class="form-control"
+                            (keyup.enter)="agregar()"
+                            [(ngModel)]="nuevoJuego"
+                            name="nuevoJuego"
                             placeholder="Agregar juego favorito">
-                    <button class="btn btn-outline-primary" type="button">Agregar</button>
+                    <button class="btn btn-outline-primary" 
+                        (click)="agregar()"
+                        type="button">Agregar</button>
                 </div>
 
             </div>
         </div>
 
 
-        <!-- Lista-->
-        <div class="mb-3 row">
-            <div class="col-sm-3"></div>
+        <!-- Favoritos-->
+        <div class="row">
+            <label class="col-sm-3">Favoritos</label>
             <div class="col-sm-9">
-                <input  type="text" *ngFor="let anime of persona.favorito; let i = index"
-                        [(ngModel)]="anime.nombre"
-                        name='anime_{{ i }}'
-                        class="form-control mb-1">
-    
+                <div class="input-group mb-1" *ngFor="let anime of persona.favorito; let i = index">
+                    <input  type="text" 
+                            [(ngModel)]="anime.nombre"
+                            name='anime_{{ i }}'
+                            class="form-control">
+                            <button class="btn btn-outline-danger" type="button"
+                                    (click)="eliminar(i)">Eliminar</button>
+                </div>
+
             </div>
         </div>
 
