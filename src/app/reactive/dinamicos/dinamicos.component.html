@@ -1,1 +1,68 @@
-<p>dinamicos works!</p>
+<h2>Reactivos dinamicos Formularios </h2>
+<hr>
+<form>
+
+    <!-- Nombre -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+
+            <input type="text" class="form-control"
+                    placeholder="Nombre de la persona"> 
+            
+            <span class="form-text text-danger">
+                No puedes tener un campo vacio
+            </span>
+
+        </div>
+    </div>
+
+
+<!-- Agregar-->
+        <div class="row mb-3">
+            <label class="col-sm-3">Agregar</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                            (keyup.enter)="1"
+                            placeholder="Agregar juego favorito">
+                    <button class="btn btn-outline-primary" 
+                        (click)="1"
+                        type="button">Agregar</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Favoritos-->
+        <div class="row">
+            <label class="col-sm-3">Favoritos</label>
+            <div class="col-sm-9">
+                <!-- <div class="input-group mb-1" *ngFor="let anime of persona.favorito; let i = index">
+                    <input  type="text" 
+                            [(ngModel)]="anime.nombre"
+                            name='anime_{{ i }}'
+                            class="form-control">
+                            <button class="btn btn-outline-danger" type="button"
+                                    (click)="eliminar(i)">Eliminar</button>
+                </div> -->
+
+            </div>
+        </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button (click)="1" 
+                    class="btn btn-primary float-end">
+                Enviar
+            </button>
+        </div>
+    </div>
+</form>
+
+<!-- 
+<h2>Persona</h2>
+<pre>{{ persona | json }}</pre> -->
