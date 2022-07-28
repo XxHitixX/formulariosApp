@@ -1,6 +1,6 @@
 <h2>Reactivos: Switches</h2>
 <hr>
-<form>
+<form [formGroup]="miFormulario" (submit)="guardar()">
 
     <!-- Genero -->
     <div class="row mb-1">
@@ -9,7 +9,7 @@
             <div class="form-check">
                 <input class="form-check-input" 
                        type="radio" 
-                       name="radioGenero" 
+                       formControlName="genero"
                        value="M"
                        id="Masculino">
                 <label class="form-check-label" for="Masculino">
@@ -19,7 +19,7 @@
               <div class="form-check">
                 <input class="form-check-input" 
                       type="radio" 
-                      name="radioGenero" 
+                      formControlName="genero"
                       value="F"
                       id="Femenino">
                 <label class="form-check-label" for="Femenino">
@@ -36,7 +36,8 @@
             <div class="form-check form-switch mt-2">
                 <input class="form-check-input" 
                        type="checkbox" 
-                       role="switch" 
+                       role="switch"
+                       formControlName="notificaciones"
                        id="flexSwitchCheckDefault">
                 <label class="form-check-label " 
                        for="flexSwitchCheckDefault">Quiero recibir notificaciones</label>
@@ -53,6 +54,7 @@
             <div class="form-check">
               <input class="form-check-input" 
                     type="checkbox" 
+                    formControlName="terminos"
                     id="terminos">
               <label class="form-check-label" for="terminos">
                  Aceptar términos y condiciones
@@ -64,17 +66,17 @@
     <!-- botón submit -->
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">Enviar</button>
+            <button type="submit" class="btn btn-primary float-end">Enviar</button>
         </div>
     </div>
 </form>
 
-<!-- 
+
 <h4>Valor formulario</h4>
 <pre> {{ miFormulario.value | json}} </pre>
 <br>
 <h4>Formulario válido?</h4>
 <pre> {{ miFormulario.valid }} </pre>
 <br>
-<h4>Términos y condiciones</h4>
+<!-- <h4>Términos y condiciones</h4>
 <pre> {{ miFormulario.controls['terminos']?.errors |json}}  </pre> -->

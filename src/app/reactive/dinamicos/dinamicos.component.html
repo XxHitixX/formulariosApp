@@ -1,6 +1,6 @@
 <h2>Reactivos dinamicos Formularios </h2>
 <hr>
-<form>
+<form (submit)="guardar()" [formGroup]="miFormulario">
 
     <!-- Nombre -->
     <div class="mb-3 row">
@@ -8,10 +8,12 @@
         <div class="col-sm-9">
 
             <input type="text" class="form-control"
+                formControlName="nombre"
                     placeholder="Nombre de la persona"> 
             
-            <span class="form-text text-danger">
-                No puedes tener un campo vacio
+            <span class="form-text text-danger"
+                    *ngIf="esValido('nombre')">
+                El campo debe tener mínimo 3 letras
             </span>
 
         </div>
@@ -24,10 +26,11 @@
             <div class="col-sm-9">
                 <div class="input-group">
                     <input type="text" class="form-control"
-                            (keyup.enter)="1"
-                            placeholder="Agregar juego favorito">
-                    <button class="btn btn-outline-primary" 
-                        (click)="1"
+                            (keyup.enter)="agregarFavorito()"
+                            placeholder="Agregar juego favorito"
+                            [formControl]="nuevoFavorito">
+                    <button class="btn btn-outline-primary"
+                        (click)="agregarFavorito()"
                         type="button">Agregar</button>
                 </div>
 
@@ -38,15 +41,17 @@
         <!-- Favoritos-->
         <div class="row">
             <label class="col-sm-3">Favoritos</label>
-            <div class="col-sm-9">
-                <!-- <div class="input-group mb-1" *ngFor="let anime of persona.favorito; let i = index">
-                    <input  type="text" 
-                            [(ngModel)]="anime.nombre"
-                            name='anime_{{ i }}'
-                            class="form-control">
+           
+            <div class="col-sm-9" formArrayName="favoritos">
+                <div class="input-group mb-1"
+                        *ngFor="let favorito of favoritoArr.controls; let i = index">
+                  
+                        <input  type="text" class="form-control"
+                                [formControlName]="i">
+
                             <button class="btn btn-outline-danger" type="button"
-                                    (click)="eliminar(i)">Eliminar</button>
-                </div> -->
+                                    (click)="borrar(i)">Eliminar</button>
+                </div>
 
             </div>
         </div>
@@ -62,7 +67,17 @@
         </div>
     </div>
 </form>
+ 
+<span>
+    <h4>Valid</h4>
+    <pre>{{miFormulario.valid|json}}</pre>
+</span>
+<br>
+<h4>Formulario</h4>
+<pre>{{ miFormulario.value | json }}</pre>
 
-<!-- 
-<h2>Persona</h2>
-<pre>{{ persona | json }}</pre> -->
+<br>
+<h4>NuevoFavorito</h4>
+<pre>{{nuevoFavorito.valid}}</pre>
+<br>
+<pre>{{nuevoFavorito.value|json}}</pre>
