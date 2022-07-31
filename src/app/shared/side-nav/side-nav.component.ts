@@ -28,7 +28,8 @@ export class SideNavComponent{
       nombre: 'switches',
       ruta : './template/switches'
     },
-  ]
+  ];
+
   rutasReactive : MenuItem[] = [
     {
       nombre: 'basicos',
@@ -40,5 +41,16 @@ export class SideNavComponent{
       nombre: 'switches',
       ruta : './reactive/switches'
     },
+  ];
+
+  rutasValidaciones : MenuItem[] = [
+    {
+      nombre: 'registro',
+      ruta: './auth/registro'
+    },
+    {
+      nombre: 'login',
+      ruta: './auth/login'
+    }
   ]
 }
