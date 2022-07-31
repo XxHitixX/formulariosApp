@@ -12,8 +12,20 @@ export class SwitchesComponent implements OnInit {
   constructor(private fb : FormBuilder) { }
 
   ngOnInit(): void {
-    this.miFormulario.reset({...this.persona,
-      terminos: true})
+    this.miFormulario.reset(
+      {...this.persona, terminos: true} )
+
+      //opcion 1 sin rest
+      // this.miFormulario.valueChanges.subscribe( formulario => {
+      //   delete formulario.terminos;
+      //   this.persona = formulario
+      // })
+
+      //opcion 2 con el rest y desestructuracion
+      this.miFormulario.valueChanges.subscribe(({terminos, ...rest}) => {
+        this.persona = rest
+      })
+
   }
 
   miFormulario : FormGroup = this.fb.group({
